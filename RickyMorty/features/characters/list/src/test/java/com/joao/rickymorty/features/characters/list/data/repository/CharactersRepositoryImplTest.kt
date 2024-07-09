@@ -40,7 +40,7 @@ class CharactersRepositoryImplTest {
         }
 
         val repository = CharactersRepositoryImpl(mockRemoteDataSource)
-        
+
         //When
         repository.getCharacters()
 
