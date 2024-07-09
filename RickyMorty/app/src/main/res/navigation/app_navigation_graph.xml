@@ -2,6 +2,9 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_navigation_graph"
-    app:startDestination="@layout/fragment_characters">
+    app:startDestination="@+id/navigation_features">
+
+    <include
+        app:graph="@navigation/navigation_features"/>
 
 </navigation>

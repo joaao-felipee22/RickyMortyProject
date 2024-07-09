@@ -2,14 +2,16 @@ package com.joao.rickymorty.features.characters.list.presentation
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joao.rickymorty.features.characters.list.databinding.ItemRecyclerBinding
 import com.joao.rickymorty.features.characters.list.domain.models.Result
+import com.joao.rickymorty.shared.R
 import com.squareup.picasso.Picasso
 
-class CharactersAdapter :  ListAdapter<Result, CharactersAdapter.ViewHolder>(Diff) {
+class CharactersAdapter : ListAdapter<Result, CharactersAdapter.ViewHolder>(Diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,9 +22,14 @@ class CharactersAdapter :  ListAdapter<Result, CharactersAdapter.ViewHolder>(Dif
         val item = getItem(position)
         item?.let {
             holder.bind(it)
+            holder.itemView.startAnimation(
+                AnimationUtils.loadAnimation(
+                    holder.itemView.context,
+                    R.anim.default_animation
+                )
+            )
         }
     }
-
 
 
     inner class ViewHolder(
@@ -34,6 +41,7 @@ class CharactersAdapter :  ListAdapter<Result, CharactersAdapter.ViewHolder>(Dif
             Picasso.get().load(result.image).into(imgcharacterCard)
         }
     }
+
     private companion object Diff : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
             oldItem.id == newItem.id
@@ -41,7 +49,6 @@ class CharactersAdapter :  ListAdapter<Result, CharactersAdapter.ViewHolder>(Dif
         override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
             oldItem.name == newItem.name
     }
-
 
 
 }
