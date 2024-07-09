@@ -35,16 +35,8 @@ object NetworkingModule {
 
     @Provides
     @Singleton
-    fun provideGson(): Retrofit = Retrofit.Builder()
-        .baseUrl("")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-
-    @Provides
-    @Singleton
     fun provideRetrofit(
         @ApplicationContext context: Context,
-        gson: Gson,
         okHttpClient: OkHttpClient
     ): Retrofit {
         val baseUrl = context.getString(R.string.base_url)

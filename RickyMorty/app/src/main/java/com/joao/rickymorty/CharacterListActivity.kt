@@ -31,7 +31,7 @@ class CharacterListActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             viewModel.listFlowResult.collect{
-                adapter.submitList(it?.results)
+               it?.let { adapter.submitList(it.results) }
             }
         }
     }

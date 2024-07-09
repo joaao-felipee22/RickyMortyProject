@@ -24,7 +24,7 @@ fun InfoResponse.toDomain() : Info {
 }
 
 fun ResultResponse.toDomain() : DomainResult {
-    return DomainResult(this.created, this.episode, this.gender, this.id, this.image, this.location.toDomain(), this.name, this.origin.toDomain(), this.species, this.status, this.type, this.url)
+    return DomainResult(this.created, this.episode, this.gender, this.id, this.image, this.location?.toDomain(), this.name, this.origin?.toDomain(), this.species, this.status, this.type, this.url)
 }
 
 fun CharacterResponse.toDomain() : Character {
